@@ -17,11 +17,30 @@ router.get('/loadMore/:userName/:pageIndex', async (ctx,next) => {
   }
 })
 
-// router.get('/', async (ctx, next) => {
-//   await ctx.render('index', {
-//     title: 'Hello Koa 2!'
-//   })
-// })
+router.get('/', async (ctx, next) => {
+  await ctx.render('index', {
+    title: 'Hello Koa 2!',
+    isMe: true,
+    blogList: [
+      {
+        id: 1,
+        title: 'aaa'
+      },
+      {
+        id: 2,
+        title: 'bbb'
+      },
+      {
+        id: 3,
+        title: 'ccc'
+      },
+      {
+        id: 4,
+        title: 'ddd'
+      }
+    ]
+  })
+})
 
 // router.get('/string', async (ctx, next) => {
 //   ctx.body = 'koa2 string'
