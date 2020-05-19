@@ -10,14 +10,14 @@ const index = require('./routes/index')
 const users = require('./routes/users')
 
 // error handler
-onerror(app)
+onerror(app) // 页面上显示
 
 // middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
-app.use(json())
-app.use(logger())
+app.use(json()) // json变成对象形式
+app.use(logger()) 
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
