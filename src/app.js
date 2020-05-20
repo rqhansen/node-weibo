@@ -13,7 +13,7 @@ const redisStore = require('koa-redis');
 const { REDIS_CONFIG } = require('./config/db');
 
 const index = require('./routes/index')
-const users = require('./routes/users')
+const userViewRouter = require('./routes/view/user');
 
 // error handler
 onerror(app) // 页面上显示
@@ -56,7 +56,7 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(userViewRouter.routes(),userViewRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
