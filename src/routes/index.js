@@ -46,10 +46,17 @@ router.get('/', async (ctx, next) => {
 //   ctx.body = 'koa2 string'
 // })
 
-// router.get('/json', async (ctx, next) => {
-//   ctx.body = {
-//     title: 'koa2 json'
-//   }
-// })
+router.get('/json', async (ctx, next) => {
+  // session 是会话，不同用户的session不同
+  const session = ctx.session;
+  if(session.viewNum == null) {
+    session.viewNum = 0;
+  }
+  session.viewNum++;
+  ctx.body = {
+    title: 'koa2 json',
+    viewNum: session.viewNum
+  }
+})
 
 module.exports = router
