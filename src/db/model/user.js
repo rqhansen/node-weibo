@@ -31,7 +31,6 @@
     },
     picture: {
         type: STRING,
-        allowNull: false,
         comment: '头像，存图片地址'
     },
     city: {

@@ -11,7 +11,7 @@
   */
  function _formatUserPicture(obj) {
     if (obj.picture == null) {
-        obj.picture = 'DEFAULT_PICTURE';
+        obj.picture = DEFAULT_PICTURE;
     }
     return obj;
  }
