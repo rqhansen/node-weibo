@@ -43,5 +43,10 @@
      changeInfoFailInfo: {
          errno: 10008,
          message: '修改基本信息失败'
-     }
+     },
+     // json schema 校验失败
+    jsonSchemaFileInfo: {
+        errno: 10009,
+        message: '数据格式校验错误'
+    }
  }
