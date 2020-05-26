@@ -53,6 +53,10 @@
     return result.dataValues;
  }
 
+ /**
+  * 
+  * @param {string} userName 用户名
+  */
  async function deleteUser(userName) {
     const result = await User.destroy({
         where: {
@@ -62,8 +66,48 @@
     return result > 0;
  }
 
+ /**
+  * 更细用户信息
+  * @param {Object} param0 要修改的内容 
+  * @param {Object} param1 查询条件
+  */
+ async function updateUser(
+     { newPassword, newNickName, newPicture,newCity },
+     { userName, password }
+ ) {
+    // 拼接修改内容
+    const updateData = {};
+    if (newPassword) {
+        updateData.password = newPassword;
+    }
+    if (newNickName) {
+        updateData.nickName = newNickName;
+    }
+    if (newPicture) {
+        updateData.picture = newPicture;
+    }
+    if (newCity) {
+        updateData.city = newCity;
+    }
+
+    const whereData = {
+        userName
+    }
+
+    if (password) {
+        whereData.password = password;
+    }
+
+    // 执行修改
+    const result = await User.update(updateData, {
+        where: whereData
+    });
+    return result[0] > 0;
+ }
+
  module.exports = {
      getUserInfo,
      createUser,
-     deleteUser
+     deleteUser,
+     updateUser
  }
