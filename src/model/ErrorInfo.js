@@ -48,5 +48,10 @@
     jsonSchemaFileInfo: {
         errno: 10009,
         message: '数据格式校验错误'
-    }
+    },
+     // 删除用户失败
+     deleteUserFailInfo: {
+        errno: 10010,
+        message: '删除用户失败'
+    },
  }

@@ -1,4 +1,5 @@
 const router = require('koa-router')()
+const { loginRedirect, loginCheck } = require('../middlewares/loginCheck');
 
 router.get('/profile/:userName', async (ctx,next) => {
   const { userName } = ctx.params;
@@ -17,7 +18,7 @@ router.get('/loadMore/:userName/:pageIndex', async (ctx,next) => {
   }
 })
 
-router.get('/', async (ctx, next) => {
+router.get('/', loginRedirect, async (ctx, next) => {
   // debugger;
   // throw Error();
   await ctx.render('index', {
