@@ -3,9 +3,11 @@
  * @author rq
  */
 
+ const xss = require('xss');
  const { createBlog } = require('../services/blog');
  const { SuccessModel, ErrorModel } = require('../model/ResModel');
  const { createBlogFailInfo } = require('../model/ErrorInfo')
+ 
  /**
   * 创建微博
   * @param {Object} param0  创建微博所需的数据
@@ -15,7 +17,7 @@
         // 创建微博 
         const blog = await createBlog({
             userId,
-            content,
+            content: xss(content),
             image
         })
         return new SuccessModel(blog)
