@@ -21,9 +21,10 @@ const { formatUser } = require('./_format');
                 model: UserRelation,
                 where: {
                     followerId,
-                    // userId: {
-                    //     [Sequelize.Op.ne]: followerId
-                    // }
+                    userId: { // 李四粉丝的id
+                        // userId 不等于followerId， [Sequelize.Op.ne]不等于
+                        [Sequelize.Op.ne]: followerId
+                    }
                 }
             }
         ]
@@ -57,7 +58,10 @@ const { formatUser } = require('./_format');
             }
         ],
         where: {
-            userId
+            userId,
+            followerId: {
+                [Sequelize.Op.ne]: userId
+            }
         }
     })
     // result.count

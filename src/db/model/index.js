@@ -22,6 +22,11 @@ const UserRelation = require('./userRelation');
      foreignKey: 'userId' // userId 是UserRelation表中的
  })
 
+ Blog.belongsTo(UserRelation, { // 没建成，不影响
+     foreignKey: 'userId',
+     targetKey: 'followerId' // UserRelation表中的followerId(非主键使用targerKey)，
+ })
+
  // 查询用户带出微博
 //  User.hasMany(Blog)
  module.exports = {
