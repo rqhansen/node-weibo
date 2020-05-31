@@ -6,7 +6,7 @@
 const User = require('./user');
 const Blog = require('./blog');
 const UserRelation = require('./userRelation');
-
+const AtRelation = require('./atRelation');
  // 创外键 (查出微博带出用户)
  Blog.belongsTo(User, {
     foreignKey: 'userId',
@@ -27,10 +27,15 @@ const UserRelation = require('./userRelation');
      targetKey: 'followerId' // UserRelation表中的followerId(非主键使用targerKey)，
  })
 
+ Blog.hasMany(AtRelation, {
+     foreignKey: 'blogId'
+ })
+
  // 查询用户带出微博
 //  User.hasMany(Blog)
  module.exports = {
      User,
      Blog,
-     UserRelation
+     UserRelation,
+     AtRelation
  }

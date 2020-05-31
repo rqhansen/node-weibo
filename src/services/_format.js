@@ -3,7 +3,7 @@
  * @author rq
  */
 
- const { DEFAULT_PICTURE } = require('../config/constant');
+ const { DEFAULT_PICTURE, REG_FOR_AT_WHO } = require('../config/constant');
 const { timeFormat } = require('../utils/dt');
  /**
   * 
@@ -46,6 +46,23 @@ const { timeFormat } = require('../utils/dt');
  }
 
  /**
+  * 格式化微博内容
+  * @param {Object} obj 微博数据对象 
+  */
+ function _formatContent(obj) {
+    obj.contentFormat = obj.content;
+
+    // 格式化@
+    obj.contentFormat = obj.contentFormat.replace(
+        REG_FOR_AT_WHO,
+        (matchStr, nickName, userName) => {
+            return `<a href="/profile/${userName}">@${nickName}</a>`
+        }
+    );
+    return obj;
+ }
+
+ /**
   * 格式化微博信息
   * @param {Array|Object} list 微博列表或者单个微博对象 
   */
@@ -55,9 +72,13 @@ function formatBlog(list) {
     }
 
     if(list instanceof Array) {
-        return list.map(_formatDBTime)
+        return list.map(_formatDBTime).map(_formatContent)
     }
-    return _formatDBTime(list)
+
+    let result = list
+    result = _formatDBTime(result)
+    result = _formatContent(result)
+    return result
 }
 
  module.exports = {
