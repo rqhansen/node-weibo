@@ -7,7 +7,7 @@ const seq = require('../seq');
 const { INTEGER, BOOLEAN } = require('../types');
 
 const AtRelation = seq.define('atRelation', {
-    userId: {
+    userId: { // 被 @ 人的id
         type: INTEGER,
         allowNull: false,
         comment: '用户id'
