@@ -7,6 +7,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const koaStatic = require('koa-static');
+console.log(22);
 
 // 新增
 const session = require('koa-generic-session');
